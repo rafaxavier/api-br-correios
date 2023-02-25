@@ -1,14 +1,24 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { consultarCep, rastrearEncomendas, calcularPrecoPrazo, PrecoPrazoRequest } from 'correios-brasil/dist';
+import { consultarCep, rastrearEncomendas, calcularPrecoPrazo } from 'correios-brasil/dist';
 
 @Injectable()
 export class AppService {
-   async getCep(params: any) {
+
+  async getCep(params: any) {
     try {
       const cep = params.cep;
-      const res = await consultarCep(cep);
+  
+      // Define a Promise com timeout de 15 segundos
+      const res = await Promise.race([
+        consultarCep(cep),
+        new Promise((resolve, reject) => {
+          console.log(resolve)
+          setTimeout(() => reject(new Error("Tempo limite excedido")), 25000);
+        })
+      ]);
+      
       return res;
-
+  
     } catch (error) {
       throw new HttpException(`Erro ao consultar o CEP: ${error.message}`, HttpStatus.BAD_REQUEST);
     }
