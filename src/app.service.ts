@@ -8,11 +8,16 @@ export class AppService {
     try {
       const cep = params.cep;
   
-      // Define a Promise com timeout de 15 segundos
+      // Define a Promise com timeout de 25 segundos
       const res = await Promise.race([
-        consultarCep(cep),
         new Promise((resolve, reject) => {
-          console.log(resolve)
+          setTimeout(() => {
+            resolve(consultarCep(cep));
+          },2000); //Aqui, 1000 é o tempo em milissegundos (1 segundo).
+        }),
+      
+      
+        new Promise((resolve, reject) => {
           setTimeout(() => reject(new Error("Tempo limite excedido")), 25000);
         })
       ]);
