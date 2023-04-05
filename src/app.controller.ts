@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { PrecoPrazoRequest } from 'correios-brasil/dist';
 import { AppService } from './app.service';
 
