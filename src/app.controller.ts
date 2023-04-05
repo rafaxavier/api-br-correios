@@ -7,12 +7,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('api/v1/busca-cep')
-  getCep(@Query() params: string){
+  getCep(@Query() params: string) {
     return this.appService.getCep(params);
   }
 
   @Get('api/v1/rastreio')
-  getRastreio(@Query() params: string){
+  getRastreio(@Query() params: string) {
     return this.appService.getRastreio(params);
   }
 
