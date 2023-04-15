@@ -47,7 +47,6 @@ export class AppService {
     }
   }
 
-  // calcular preco e prazo de envio
   async getPrecoPrazo(params: any) {
     try {
       const args = {
