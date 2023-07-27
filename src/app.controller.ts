@@ -6,17 +6,17 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('api/v1/busca-cep')
+  @Get('busca-cep')
   getCep(@Query() params: string) {
     return this.appService.getCep(params);
   }
 
-  @Get('api/v1/rastreio')
+  @Get('rastreio')
   getRastreio(@Query() params: string) {
     return this.appService.getRastreio(params);
   }
 
-  @Get('api/v1/calcula-preco-prazo')
+  @Get('calcula-preco-prazo')
   getPrecoPrazo(@Query() params: PrecoPrazoRequest) {
     return this.appService.getPrecoPrazo(params);
   }

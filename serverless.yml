@@ -1,0 +1,20 @@
+service: api-app-rastreio-sp
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: sa-east-1
+
+plugins:
+  - 'serverless-plugin-typescript'
+  - serverless-plugin-optimize
+  - serverless-offline
+
+
+functions:
+  main: 
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /{any+}
